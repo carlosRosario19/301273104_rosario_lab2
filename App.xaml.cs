@@ -48,9 +48,13 @@ namespace _301273104_rosario_lab2
 
             // Register ViewModels
             services.AddTransient<ViewModels.MainWindowViewModel>();
+            services.AddTransient<ViewModels.BookshelfViewModel>();
+            services.AddTransient<ViewModels.PdfViewerViewModel>();
 
             // Register Views
             services.AddTransient<Views.MainWindow>();
+            services.AddTransient<Views.BookshelfWindow>();
+            services.AddTransient<Views.PdfViewerWindow>();
 
             _serviceProvider = services.BuildServiceProvider();
 
