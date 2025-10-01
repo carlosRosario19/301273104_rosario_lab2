@@ -1,5 +1,9 @@
 ﻿using _301273104_rosario_lab2.Factories;
+using _301273104_rosario_lab2.Models;
+using _301273104_rosario_lab2.Services;
+using _301273104_rosario_lab2.Services.Impl;
 using Amazon;
+using Amazon.DynamoDBv2;
 using Amazon.S3;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -43,8 +47,35 @@ namespace _301273104_rosario_lab2
                 );
             });
 
+            // Register IAmazonDynamoDB with credentials from configuration
+            services.AddSingleton<IAmazonDynamoDB>(sp =>
+            {
+                var config = sp.GetRequiredService<IConfiguration>();
+
+                var region = config["AWS:Region"];
+                var accessKey = config["AWS:AccessKey"];
+                var secretKey = config["AWS:SecretKey"];
+
+                return new AmazonDynamoDBClient(
+                    accessKey,
+                    secretKey,
+                    RegionEndpoint.GetBySystemName(region)
+                );
+            });
+
+            // Register Models
+            services.AddSingleton<User>();
+
             // Register Factories
             services.AddSingleton<IWindowFactory, WindowFactory>();
+
+            // Register storage service
+            services.AddSingleton<IStorageService, S3StorageService>();
+            services.AddSingleton<IRepository, DynamoDBRepository>();
+
+            // Register Commands
+            services.AddTransient<Commands.LoginCommand>();
+            services.AddTransient<Commands.LogoutCommand>();
 
             // Register ViewModels
             services.AddTransient<ViewModels.MainWindowViewModel>();

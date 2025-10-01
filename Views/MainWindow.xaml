@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:_301273104_rosario_lab2"
         xmlns:viewModel="clr-namespace:_301273104_rosario_lab2.ViewModels"
+        xmlns:helpers="clr-namespace:_301273104_rosario_lab2.Helpers"
         mc:Ignorable="d"
         Title="eBook Reader" Height="450" Width="800">
     <Grid>
@@ -50,7 +51,8 @@
 
             <TextBox Grid.Row="0" 
                      Grid.Column="1" 
-                     Margin="5"/>
+                     Margin="5"
+                     Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}"/>
 
             <!-- Password -->
             <Label Grid.Row="1" 
@@ -61,7 +63,8 @@
 
             <PasswordBox Grid.Row="1" 
                          Grid.Column="1" 
-                         Margin="5"/>
+                         Margin="5"
+                         helpers:PasswordBoxHelper.BoundPassword="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
             <!-- Login Button -->
             <Button Grid.Row="2" 
@@ -69,7 +72,8 @@
                     Content="Login" 
                     Padding="10,5" 
                     Margin="5" 
-                    Background="LightBlue"/>
+                    Background="LightBlue"
+                    Command="{Binding LoginCommand}"/>
         </Grid>
 
         <!-- Footer -->

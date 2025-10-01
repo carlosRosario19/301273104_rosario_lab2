@@ -23,13 +23,14 @@
                    FontWeight="Bold"
                    Margin="10,0"/>
 
-                <Button Content="user@example.com"
+                <Button Content="{Binding Username}"
                         VerticalAlignment="Center"
                         Margin="10,0"
                         >
                     <Button.ContextMenu>
                         <ContextMenu>
-                            <MenuItem Header="Logout"/>
+                            <MenuItem Header="Logout"
+                                      Command="{Binding LogoutCommand}"/>
                         </ContextMenu>
                     </Button.ContextMenu>
                 </Button>

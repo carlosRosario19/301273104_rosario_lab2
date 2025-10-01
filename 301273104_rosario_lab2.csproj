@@ -15,12 +15,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Commands\" />
-    <Folder Include="Models\" />
-    <Folder Include="Services\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="AWSSDK.DynamoDBv2" Version="4.0.6.4" />
     <PackageReference Include="AWSSDK.S3" Version="4.0.7.5" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="9.0.9" />
@@ -37,6 +31,12 @@
     <Resource Include="Views\Images\header.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>
