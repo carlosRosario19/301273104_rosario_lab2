@@ -12,6 +12,13 @@ namespace _301273104_rosario_lab2.Views
         {
             InitializeComponent();
             DataContext = viewModel;
+
+            // Run LoadBooksCommand when the window finishes loading
+            Loaded += (_, __) =>
+            {
+                if (viewModel.LoadBooksCommand.CanExecute(null))
+                    viewModel.LoadBooksCommand.Execute(null);
+            };
         }
     }
 }

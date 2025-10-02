@@ -65,6 +65,7 @@ namespace _301273104_rosario_lab2
 
             // Register Models
             services.AddSingleton<User>();
+            services.AddSingleton<Bookshelf>();
 
             // Register Factories
             services.AddSingleton<IWindowFactory, WindowFactory>();
@@ -76,6 +77,7 @@ namespace _301273104_rosario_lab2
             // Register Commands
             services.AddTransient<Commands.LoginCommand>();
             services.AddTransient<Commands.LogoutCommand>();
+            services.AddTransient<Commands.LoadBooksCommand>();
 
             // Register ViewModels
             services.AddTransient<ViewModels.MainWindowViewModel>();

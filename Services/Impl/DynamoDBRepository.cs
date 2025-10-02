@@ -35,5 +35,24 @@ namespace _301273104_rosario_lab2.Services.Impl
 
             return storedPassword == password;
         }
+
+        public async Task<List<Dictionary<string, AttributeValue>>> GetUserBooksOrderedAsync(string username)
+        {
+            var request = new QueryRequest
+            {
+                TableName = _tableName,
+                IndexName = "PK-lastAccessed-index",
+                KeyConditionExpression = "PK = :pk",
+                ExpressionAttributeValues = new Dictionary<string, AttributeValue>
+        {
+            { ":pk", new AttributeValue { S = $"USER#{username}" } }
+        },
+                ScanIndexForward = false // descending (latest first)
+            };
+
+            var response = await _dynamoDb.QueryAsync(request);
+
+            return response.Items;
+        }
     }
 }

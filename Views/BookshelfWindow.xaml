@@ -39,7 +39,7 @@
 
         <!-- Main Body -->
         <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Padding="10">
-            <ItemsControl>
+            <ItemsControl ItemsSource="{Binding Books}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <Border BorderBrush="LightBlue" BorderThickness="1" 
@@ -49,17 +49,26 @@
                                 <TextBlock Text="{Binding Title}" 
                                            FontWeight="Bold" 
                                            FontSize="14"/>
-                                <TextBlock Text="{Binding Author}" 
-                                           FontSize="12"/>
+
+                                <!-- Authors: horizontal list -->
+                                <ItemsControl ItemsSource="{Binding Authors}">
+                                    <ItemsControl.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <StackPanel Orientation="Horizontal"/>
+                                        </ItemsPanelTemplate>
+                                    </ItemsControl.ItemsPanel>
+
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <!-- each author -->
+                                            <TextBlock Text="{Binding}" FontSize="12" Margin="0,0,6,0"/>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
                             </StackPanel>
                         </Border>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
-
-                <!-- Hardcoded books for now -->
-                <ItemsControl.Items>
-                    
-                </ItemsControl.Items>
             </ItemsControl>
         </ScrollViewer>
 
