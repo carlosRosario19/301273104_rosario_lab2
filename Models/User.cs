@@ -35,5 +35,11 @@ namespace _301273104_rosario_lab2.Models
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;
+
+        public void Clear()
+        {
+            Username = string.Empty;
+            Password = string.Empty;
+        }
     }
 }

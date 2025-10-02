@@ -22,8 +22,7 @@ namespace _301273104_rosario_lab2.Commands
 
         private async Task ExecuteAsync()
         {
-            _user.Username = string.Empty;
-            _user.Password = string.Empty;
+            _user.Clear();
 
             // Open Login Window
             var window = _windowFactory.Create<MainWindow>();

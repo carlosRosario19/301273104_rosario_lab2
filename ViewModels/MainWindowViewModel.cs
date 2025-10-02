@@ -25,7 +25,14 @@ namespace _301273104_rosario_lab2.ViewModels
         public string? Password
         {
             get => _user.Password;
-            set => _user.Password = value;
+            set
+            {
+                if (_user.Password != value)
+                {
+                    _user.Password = value;
+                    OnPropertyChanged();
+                }
+            }
         }
 
     }
