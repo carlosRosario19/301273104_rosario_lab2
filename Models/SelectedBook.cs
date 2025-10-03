@@ -42,5 +42,18 @@ namespace _301273104_rosario_lab2.Models
 
         protected void OnPropertyChanged(string propertyName) =>
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+
+        public void Clear()
+        {
+            // Dispose the memory stream if it's holding data
+            if (_documentStream != null)
+            {
+                _documentStream.Dispose();
+                _documentStream = null;
+            }
+
+            Book = null; // this will raise PropertyChanged for Book
+            OnPropertyChanged(nameof(DocumentStream));
+        }
     }
 }

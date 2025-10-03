@@ -1,4 +1,5 @@
-﻿using _301273104_rosario_lab2.Models;
+﻿using _301273104_rosario_lab2.Commands;
+using _301273104_rosario_lab2.Models;
 using System.ComponentModel;
 using System.IO;
 
@@ -7,10 +8,13 @@ namespace _301273104_rosario_lab2.ViewModels
     public class PdfViewerViewModel : ViewModelBase
     {
         private readonly SelectedBook _selectedBook;
+        
+        public CommandBase UpdateBookCommand { get; }
 
-        public PdfViewerViewModel(SelectedBook selectedBook)
+        public PdfViewerViewModel(SelectedBook selectedBook, UpdateBookCommand updateBookCommand)
         {
             _selectedBook = selectedBook;
+            UpdateBookCommand = updateBookCommand;
             _selectedBook.PropertyChanged += SelectedBookOnPropertyChanged;
         }
 

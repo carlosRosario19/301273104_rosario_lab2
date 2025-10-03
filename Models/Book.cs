@@ -2,6 +2,7 @@
 {
     public class Book
     {
+        public string Isbn { get; set; } = string.Empty;
         public string Title { get; set; } = string.Empty;
         public List<string> Authors { get; set; } = new();
         public string S3Key { get; set; } = string.Empty;

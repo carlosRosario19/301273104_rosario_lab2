@@ -80,6 +80,7 @@ namespace _301273104_rosario_lab2
             services.AddTransient<Commands.LogoutCommand>();
             services.AddTransient<Commands.LoadBooksCommand>();
             services.AddTransient<Commands.OpenPdfViewerCommand>();
+            services.AddTransient<Commands.UpdateBookCommand>();
 
             // Register ViewModels
             services.AddTransient<ViewModels.MainWindowViewModel>();

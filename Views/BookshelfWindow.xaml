@@ -24,16 +24,33 @@
                    Margin="10,0"/>
 
                 <Button Content="{Binding Username}"
-                        VerticalAlignment="Center"
-                        Margin="10,0"
-                        >
+                    VerticalAlignment="Center"
+                    Margin="10,0"
+                    Cursor="Hand"
+                    Padding="0"
+                    Background="Transparent"
+                    BorderThickness="0"
+                    Foreground="Blue"
+                    FontWeight="Normal"
+                    FontFamily="Segoe UI"
+                    FontSize="12">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <TextBlock Text="{TemplateBinding Content}"
+                       Foreground="{TemplateBinding Foreground}"
+                       TextDecorations="Underline"
+                       Cursor="{TemplateBinding Cursor}"/>
+                        </ControlTemplate>
+                    </Button.Template>
+
                     <Button.ContextMenu>
                         <ContextMenu>
                             <MenuItem Header="Logout"
-                                      Command="{Binding LogoutCommand}"/>
+                      Command="{Binding LogoutCommand}"/>
                         </ContextMenu>
                     </Button.ContextMenu>
                 </Button>
+
             </StackPanel>
         </Border>
 

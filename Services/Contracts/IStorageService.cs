@@ -1,5 +1,4 @@
-﻿using Amazon.S3.Model;
-using System.IO;
+﻿using System.IO;
 
 namespace _301273104_rosario_lab2.Services
 {

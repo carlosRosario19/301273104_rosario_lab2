@@ -55,6 +55,25 @@ namespace _301273104_rosario_lab2.Services.Impl
             return response.Items;
         }
 
+        public async Task UpdateBookProgressAsync(string username, string isbn, int bookmarkPage, DateTime lastAccessed)
+        {
+            var request = new UpdateItemRequest
+            {
+                TableName = _tableName,
+                Key = new Dictionary<string, AttributeValue>
+            {
+                { "PK", new AttributeValue { S = $"USER#{username}" } },
+                { "SK", new AttributeValue { S = $"BOOK#{isbn}" } }
+            },
+                UpdateExpression = "SET bookmarkPage = :bookmarkPage, lastAccessed = :lastAccessed",
+                ExpressionAttributeValues = new Dictionary<string, AttributeValue>
+            {
+                { ":bookmarkPage", new AttributeValue { N = bookmarkPage.ToString() } },
+                { ":lastAccessed", new AttributeValue { S = lastAccessed.ToString("o") } } // ISO-8601 format
+            }
+            };
 
+            await _dynamoDb.UpdateItemAsync(request);
+        }
     }
 }

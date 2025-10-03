@@ -42,6 +42,15 @@ namespace _301273104_rosario_lab2.Commands
 
                 foreach (var item in items)
                 {
+                    // Extract ISBN from SK (format: BOOK#<isbn>)
+                    var isbn = string.Empty;
+                    if (item.ContainsKey("SK") && item["SK"].S != null)
+                    {
+                        var sk = item["SK"].S;
+                        if (sk.StartsWith("BOOK#"))
+                            isbn = sk.Substring("BOOK#".Length);
+                    }
+
                     // Title
                     var title = item.ContainsKey("title") && item["title"].S != null
                         ? item["title"].S
@@ -81,6 +90,7 @@ namespace _301273104_rosario_lab2.Commands
 
                     var book = new Book
                     {
+                        Isbn = isbn,
                         Title = title,
                         Authors = authors,
                         S3Key = s3Key,
