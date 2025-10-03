@@ -14,22 +14,23 @@ namespace _301273104_rosario_lab2.Services
             Client = client;
         }
 
-        public async Task<byte[]> GetObjectAsync(string bucketName, string objectName)
+        public async Task<MemoryStream> GetObjectAsync(string bucketName, string objectName)
         {
             try
             {
+
                 var request = new GetObjectRequest
                 {
                     BucketName = bucketName,
                     Key = objectName
                 };
 
-                using (var response = await Client.GetObjectAsync(request))
-                using (var memoryStream = new MemoryStream())
-                {
-                    await response.ResponseStream.CopyToAsync(memoryStream);
-                    return memoryStream.ToArray(); // PDF bytes in memory
-                }
+                //using (var response = await Client.GetObjectAsync(request))
+                using GetObjectResponse response = await Client.GetObjectAsync(request);
+                var memoryStream = new MemoryStream();
+                await response.ResponseStream.CopyToAsync(memoryStream);
+                memoryStream.Position = 0; // reset pointer so reader starts at beginning
+                return memoryStream; // caller must dispose
             }
             catch (AmazonS3Exception ex)
             {

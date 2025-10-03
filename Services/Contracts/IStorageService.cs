@@ -1,9 +1,10 @@
 ﻿using Amazon.S3.Model;
+using System.IO;
 
 namespace _301273104_rosario_lab2.Services
 {
     public interface IStorageService
     {
-        Task<byte[]> GetObjectAsync(string bucketName, string objectName);
+        Task<MemoryStream> GetObjectAsync(string bucketName, string objectName);
     }
 }

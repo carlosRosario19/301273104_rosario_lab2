@@ -39,28 +39,28 @@
 
         <!-- Main Body -->
         <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Padding="10">
-            <ItemsControl ItemsSource="{Binding Books}">
-                <ItemsControl.ItemTemplate>
+            <ListBox x:Name="BooksListBox"
+             ItemsSource="{Binding Books}"
+             SelectedItem="{Binding SelectedBook, Mode=TwoWay}"
+             SelectionMode="Single"
+             MouseDoubleClick="BooksListBox_MouseDoubleClick"
+             Background="Transparent"
+             BorderThickness="0">
+                <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Border BorderBrush="LightBlue" BorderThickness="1" 
-                                Background="White" CornerRadius="4" 
-                                Margin="5" Padding="10">
+                        Background="White" CornerRadius="4" 
+                        Margin="5" Padding="10">
                             <StackPanel>
-                                <TextBlock Text="{Binding Title}" 
-                                           FontWeight="Bold" 
-                                           FontSize="14"/>
-
-                                <!-- Authors: horizontal list -->
+                                <TextBlock Text="{Binding Title}" FontWeight="Bold" FontSize="14"/>
                                 <ItemsControl ItemsSource="{Binding Authors}">
                                     <ItemsControl.ItemsPanel>
                                         <ItemsPanelTemplate>
                                             <StackPanel Orientation="Horizontal"/>
                                         </ItemsPanelTemplate>
                                     </ItemsControl.ItemsPanel>
-
                                     <ItemsControl.ItemTemplate>
                                         <DataTemplate>
-                                            <!-- each author -->
                                             <TextBlock Text="{Binding}" FontSize="12" Margin="0,0,6,0"/>
                                         </DataTemplate>
                                     </ItemsControl.ItemTemplate>
@@ -68,8 +68,8 @@
                             </StackPanel>
                         </Border>
                     </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
+                </ListBox.ItemTemplate>
+            </ListBox>
         </ScrollViewer>
 
     </Grid>

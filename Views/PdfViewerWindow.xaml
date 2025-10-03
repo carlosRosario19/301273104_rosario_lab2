@@ -9,10 +9,10 @@
         mc:Ignorable="d"
         Title="eBook Reader" Height="450" Width="800">
     <Grid>
-
         <PdfViewer:PdfViewerControl 
-            HorizontalAlignment="Stretch" 
-            VerticalAlignment="Stretch"/>
-
+        x:Name="PdfViewer"
+        HorizontalAlignment="Stretch" 
+        VerticalAlignment="Stretch"
+        Loaded="PdfViewer_Loaded"/>
     </Grid>
 </Window>

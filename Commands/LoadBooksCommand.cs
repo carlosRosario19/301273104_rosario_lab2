@@ -63,11 +63,29 @@ namespace _301273104_rosario_lab2.Commands
                         ? item["s3Key"].S
                         : string.Empty;
 
+                    // bookmarkPage
+                    var bookmarkPage = 0;
+                    if (item.ContainsKey("bookmarkPage") && item["bookmarkPage"].N != null)
+                    {
+                        if (int.TryParse(item["bookmarkPage"].N, out var parsedPage))
+                            bookmarkPage = parsedPage;
+                    }
+
+                    // lastAccessed
+                    DateTime lastAccessed = DateTime.MinValue;
+                    if (item.ContainsKey("lastAccessed") && item["lastAccessed"].S != null)
+                    {
+                        if (DateTime.TryParse(item["lastAccessed"].S, out var parsedDate))
+                            lastAccessed = parsedDate;
+                    }
+
                     var book = new Book
                     {
                         Title = title,
                         Authors = authors,
-                        S3Key = s3Key
+                        S3Key = s3Key,
+                        BookmarkPage = bookmarkPage,
+                        LastAccessed = lastAccessed
                     };
 
                     // Add to ObservableCollection on UI thread
